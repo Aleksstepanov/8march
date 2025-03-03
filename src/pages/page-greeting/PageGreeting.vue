@@ -1,3 +1,3 @@
 <template>
-  <div>Page Greeting</div>
+  <p>Page Greeting</p>
 </template>
