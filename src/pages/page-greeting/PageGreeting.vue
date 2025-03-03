@@ -1,12 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">Как тебя зовут, прекрасная незнакомка? 💖</h1>
-    <NInput
-      v-model:value="name"
-      placeholder="Напиши своё имя..."
-      size="large"
-      class="input"
-    />
+    <NInput v-model:value="name" placeholder="Напиши своё имя..." size="large" class="input" />
     <NButton type="primary" size="large" class="button" @click="goToHome"> Продолжить ✨ </NButton>
   </div>
 </template>

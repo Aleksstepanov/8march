@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: 'Marck Script', cursive;
+  color: #e91e63;
+}
+
+.text {
+  font-size: 1.5rem;
+  max-width: 600px;
+  line-height: 1.5;
+  font-style: italic;
+  color: #6d214f;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
