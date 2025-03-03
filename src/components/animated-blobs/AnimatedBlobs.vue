@@ -14,15 +14,17 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: -1;
+  z-index: 5;
 }
 
 .blob {
   position: absolute;
-  width: 300px;
-  height: 300px;
-  background: rgba(255, 183, 197, 0.3);
-  filter: blur(100px);
+  width: 20vw;
+  height: 20vw;
+  max-width: 400px;
+  max-height: 400px;
+  background: radial-gradient(circle, rgba(255, 100, 150, 0.8) 30%, rgba(255, 140, 197, 0.5) 100%);
+  filter: blur(10vw);
   border-radius: 50%;
   animation: moveBlobs 10s infinite alternate ease-in-out;
 }
@@ -48,9 +50,18 @@
 @keyframes moveBlobs {
   0% {
     transform: scale(1) translateY(0);
+    opacity: 0.8;
   }
   100% {
-    transform: scale(1.2) translateY(-30px);
+    transform: scale(1.3) translateY(-5vh);
+    opacity: 0.5;
+  }
+}
+@media (max-width: 768px) {
+  .blob {
+    width: 40vw;
+    height: 40vw;
+    filter: blur(15vw);
   }
 }
 </style>
