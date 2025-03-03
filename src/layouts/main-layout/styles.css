@@ -3,5 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  background-image: url('@/assets/img/background.webp'), linear-gradient(135deg, #ffdde1, #ee9ca7);
+  background-blend-mode: soft-light;
+  background-size: cover;
+  background-position: center;
 }
