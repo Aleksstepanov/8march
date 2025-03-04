@@ -1,10 +1,50 @@
 <template>
   <div class="blobs">
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
+    <div v-for="(_, index) in blobs" :key="index" ref="blobRefs" class="blob"></div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import gsap from 'gsap'
+
+// Цвета для пятен
+const randomColors = [
+  'radial-gradient(circle, rgba(255, 0, 100, 0.9) 10%, rgba(255, 100, 150, 0.5) 70%)',
+  'radial-gradient(circle, rgba(255, 140, 0, 0.9) 10%, rgba(255, 200, 100, 0.5) 70%)',
+  'radial-gradient(circle, rgba(0, 150, 255, 0.9) 10%, rgba(100, 200, 255, 0.5) 70%)',
+  'radial-gradient(circle, rgba(0, 255, 100, 0.9) 10%, rgba(100, 255, 150, 0.5) 70%)'
+]
+
+const blobs = ref(new Array(10).fill(null))
+const blobRefs = ref<HTMLElement[]>([])
+
+onMounted(() => {
+  blobRefs.value.forEach((blob, index) => {
+    blob.style.background = randomColors[Math.floor(Math.random() * randomColors.length)]
+
+    gsap.set(blob, {
+      x: 0,
+      y: 0,
+      scale: 0,
+      opacity: 1
+    })
+
+    gsap.to(blob, {
+      scale: Math.random() * 3 + 2,
+      opacity: 0,
+      x: (Math.random() - 0.5) * window.innerWidth * 1.5,
+      y: (Math.random() - 0.5) * window.innerHeight * 1.5,
+      rotation: Math.random() * 360,
+      duration: 1.2 + Math.random(),
+      ease: 'power4.out',
+      delay: index * 0.1,
+      repeat: -1,
+      yoyo: true
+    })
+  })
+})
+</script>
 
 <style scoped>
 .blobs {
@@ -14,54 +54,19 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: 5;
+  pointer-events: none;
 }
 
 .blob {
   position: absolute;
   width: 20vw;
   height: 20vw;
-  max-width: 400px;
-  max-height: 400px;
-  background: radial-gradient(circle, rgba(255, 100, 150, 0.8) 30%, rgba(255, 140, 197, 0.5) 100%);
-  filter: blur(10vw);
+  max-width: 300px;
+  max-height: 300px;
   border-radius: 50%;
-  animation: moveBlobs 10s infinite alternate ease-in-out;
-}
-
-.blob:nth-child(1) {
-  top: 10%;
-  left: 20%;
-  animation-delay: 0s;
-}
-
-.blob:nth-child(2) {
+  filter: blur(20px);
   top: 50%;
-  left: 60%;
-  animation-delay: 2s;
-}
-
-.blob:nth-child(3) {
-  top: 80%;
-  left: 30%;
-  animation-delay: 4s;
-}
-
-@keyframes moveBlobs {
-  0% {
-    transform: scale(1) translateY(0);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.3) translateY(-5vh);
-    opacity: 0.5;
-  }
-}
-@media (max-width: 768px) {
-  .blob {
-    width: 40vw;
-    height: 40vw;
-    filter: blur(15vw);
-  }
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
