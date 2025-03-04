@@ -47,26 +47,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.blobs {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.blob {
-  position: absolute;
-  width: 20vw;
-  height: 20vw;
-  max-width: 300px;
-  max-height: 300px;
-  border-radius: 50%;
-  filter: blur(20px);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+@import "./styles.css";
 </style>
